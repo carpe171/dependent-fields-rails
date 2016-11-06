@@ -27,7 +27,9 @@ showOrHideDependentFieldsSelect = (duration = 0) ->
     $this = $(this)
     # use attr here instead of data because we do not want jquery to cast the string into js types
     showOrHide = _.contains($this.attr('data-option-value').split('|'), $select.val())
-    toggle($this, showOrHide, $this.data('method'), duration)
+    method = $this.data('method')
+    duration = $this.data('duration') || 0
+    toggle($this, showOrHide, method, duration)
 
   $(".js-dependent-fields[data-select-id=#{$select.attr('id')}]").each showOrHideFields
 
@@ -38,7 +40,9 @@ showOrHideDependentFieldsCheckbox = (duration = 0) ->
   showOrHideFields = ->
     $this = $(this)
     showOrHide = $this.data('checkbox-value') == $checkbox.is(':checked')
-    toggle($this, showOrHide, $this.data('method'), duration)
+    method = $this.data('method')
+    duration = $this.data('duration') || 0
+    toggle($this, showOrHide, method, duration)
 
   $(".js-dependent-fields[data-checkbox-id=#{$checkbox.attr('id')}]").each showOrHideFields
 
@@ -52,27 +56,29 @@ showOrHideDependentFieldsRadio = (duration = 0) ->
     $checkedRadio = $("input:checked[name=#{$radio.attr('name').replace(/\[/g, '\\[').replace(/]/g, '\\]')}]")
     # use attr here instead of data because we do not want jquery to cast the string into js types
     showOrHide = _.contains($this.attr('data-radio-value').split('|'), $checkedRadio.val())
-    toggle($this, showOrHide, $this.data('method'), duration)
+    method = $this.data('method')
+    duration = $this.data('duration') || 0
+    toggle($this, showOrHide, method, duration)
 
   $(".js-dependent-fields[data-radio-name=#{$radio.attr('name').replace(/\[/g, '\\[').replace(/]/g, '\\]')}]").each showOrHideFields
 
 
 bind = ->
   $selects = $('select')
-  $selects.not('[data-important]').each _.partial(showOrHideDependentFieldsSelect, 0)
-  $selects.filter('[data-important]').each _.partial(showOrHideDependentFieldsSelect, 0)
+  $selects.not('[data-important]').each _.partial(showOrHideDependentFieldsSelect)
+  $selects.filter('[data-important]').each _.partial(showOrHideDependentFieldsSelect)
 
   $selects.change showOrHideDependentFieldsSelect
 
   $inputs = $('input[type=checkbox]')
-  $inputs.not('[data-important]').each _.partial(showOrHideDependentFieldsCheckbox, 0)
-  $inputs.filter('[data-important]').each _.partial(showOrHideDependentFieldsCheckbox, 0)
+  $inputs.not('[data-important]').each _.partial(showOrHideDependentFieldsCheckbox)
+  $inputs.filter('[data-important]').each _.partial(showOrHideDependentFieldsCheckbox)
 
   $inputs.change showOrHideDependentFieldsCheckbox
 
   $radios = $('input[type=radio]')
-  $radios.not('[data-important]').each _.partial(showOrHideDependentFieldsRadio, 0)
-  $radios.filter('[data-important]').each _.partial(showOrHideDependentFieldsRadio, 0)
+  $radios.not('[data-important]').each _.partial(showOrHideDependentFieldsRadio)
+  $radios.filter('[data-important]').each _.partial(showOrHideDependentFieldsRadio)
 
   $radios.change showOrHideDependentFieldsRadio
 
