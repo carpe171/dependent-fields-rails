@@ -20,7 +20,7 @@ toggle = ($parent, showOrHide, method, duration) ->
       $parent.hide(duration)
 
 
-showOrHideDependentFieldsSelect = (duration = 'fast') ->
+showOrHideDependentFieldsSelect = (duration = 0) ->
   $select = $(this)
 
   showOrHideFields = ->
@@ -32,7 +32,7 @@ showOrHideDependentFieldsSelect = (duration = 'fast') ->
   $(".js-dependent-fields[data-select-id=#{$select.attr('id')}]").each showOrHideFields
 
 
-showOrHideDependentFieldsCheckbox = (duration = 'fast') ->
+showOrHideDependentFieldsCheckbox = (duration = 0) ->
   $checkbox = $(this)
 
   showOrHideFields = ->
@@ -43,7 +43,7 @@ showOrHideDependentFieldsCheckbox = (duration = 'fast') ->
   $(".js-dependent-fields[data-checkbox-id=#{$checkbox.attr('id')}]").each showOrHideFields
 
 
-showOrHideDependentFieldsRadio = (duration = 'fast') ->
+showOrHideDependentFieldsRadio = (duration = 0) ->
   $radio = $(this)
 
   showOrHideFields = ->
