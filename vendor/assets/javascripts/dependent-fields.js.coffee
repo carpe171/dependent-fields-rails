@@ -30,8 +30,9 @@ showOrHideDependentFieldsSelect = () ->
     method = $this.data('method')
     duration = $this.data('duration') || 0
     toggle($this, showOrHide, method, duration)
-
-  $(".js-dependent-fields[data-select-id=#{$select.attr('id')}]").each showOrHideFields
+  id = $select.attr('id')
+  if id
+    $(".js-dependent-fields[data-select-id='#{id}']").each showOrHideFields
 
 
 showOrHideDependentFieldsCheckbox = () ->
