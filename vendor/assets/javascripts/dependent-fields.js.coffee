@@ -20,7 +20,7 @@ toggle = ($parent, showOrHide, method, duration) ->
       $parent.hide(duration)
 
 
-showOrHideDependentFieldsSelect = (duration = 0) ->
+showOrHideDependentFieldsSelect = () ->
   $select = $(this)
 
   showOrHideFields = ->
@@ -34,7 +34,7 @@ showOrHideDependentFieldsSelect = (duration = 0) ->
   $(".js-dependent-fields[data-select-id=#{$select.attr('id')}]").each showOrHideFields
 
 
-showOrHideDependentFieldsCheckbox = (duration = 0) ->
+showOrHideDependentFieldsCheckbox = () ->
   $checkbox = $(this)
 
   showOrHideFields = ->
@@ -47,7 +47,7 @@ showOrHideDependentFieldsCheckbox = (duration = 0) ->
   $(".js-dependent-fields[data-checkbox-id=#{$checkbox.attr('id')}]").each showOrHideFields
 
 
-showOrHideDependentFieldsRadio = (duration = 0) ->
+showOrHideDependentFieldsRadio = () ->
   $radio = $(this)
 
   showOrHideFields = ->
