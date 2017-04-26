@@ -45,7 +45,9 @@ showOrHideDependentFieldsCheckbox = () ->
     duration = $this.data('duration') || 0
     toggle($this, showOrHide, method, duration)
 
-  $(".js-dependent-fields[data-checkbox-id=#{$checkbox.attr('id')}]").each showOrHideFields
+  if $checkbox.attr('id')
+    id = $checkbox.attr('id').replace(/^[^a-z]+|[^\w:-]+/gi, "")
+    $(".js-dependent-fields[data-checkbox-id=#{id}]").each showOrHideFields
 
 
 showOrHideDependentFieldsRadio = () ->
