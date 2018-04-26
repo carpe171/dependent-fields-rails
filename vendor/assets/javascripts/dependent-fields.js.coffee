@@ -46,7 +46,7 @@ showOrHideDependentFieldsCheckbox = () ->
     toggle($this, showOrHide, method, duration)
 
   if $checkbox.attr('id')
-    id = $checkbox.attr('id').replace(/^[^a-z]+|[^\w:-]+/gi, "")
+    id = $checkbox.attr('id').replace(/^[^a-z0-9]+|[^\w:-]+/gi, "")
     $(".js-dependent-fields[data-checkbox-id=#{id}]").each showOrHideFields
 
 
